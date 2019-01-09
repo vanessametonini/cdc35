@@ -1,11 +1,17 @@
 const express = require('express');
+const consign = require('consign');
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use('/static', express.static('node_modules/bootstrap/dist/'));
 
-require('./routes/home')(app);
-require('./routes/produtos')(app);
+consign()
+    .include('./routes')
+    .then('./infra')
+    .into(app);
+
+// require('./routes/home')(app);
+// require('./routes/produtos')(app);
 
 app.use(function(request, response, next){
     response.status(404).render('erros/404');

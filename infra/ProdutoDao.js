@@ -6,4 +6,4 @@ ProdutoDao.prototype.listar = function (callback) {
     this._conexao.query('SELECT * FROM livros', callback);
 }
 
-module.exports = ProdutoDao;
+module.exports = conexao => ProdutoDao;

@@ -1,10 +1,8 @@
-const ProdutoDao = require('../infra/ProdutoDao')
-
 module.exports = function(app) {
     app.get('/produtos', function (request, response, next) {
         
-        const conexao = require('../infra/connectionFactory')();
-        const produtoDao = new ProdutoDao(conexao);
+        const conexao = app.infra.connectionFactory();
+        const produtoDao = new app.infra.ProdutoDao(conexao);
 
         produtoDao.listar(function(error, resultados){
             
