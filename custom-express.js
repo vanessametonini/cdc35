@@ -1,17 +1,18 @@
 const express = require('express');
 const consign = require('consign');
+const bodyParser = require('body-parser');
 const app = express();
 
 app.set('view engine', 'ejs');
 app.use('/static', express.static('node_modules/bootstrap/dist/'));
+app.use(bodyParser.urlencoded({ extended: true }));
+//body-parser deprecated undefined extended: provide extended option custom-express.js
+//falta {extended: true} como parametro de urlencoded
 
 consign()
     .include('./routes')
     .then('./infra')
     .into(app);
-
-// require('./routes/home')(app);
-// require('./routes/produtos')(app);
 
 app.use(function(request, response, next){
     response.status(404).render('erros/404');
