@@ -27,7 +27,7 @@ module.exports = function(app) {
         const livro = request.body;
 
         produtoDao.cadastrar(livro, () =>{
-            response.render('produtos/salvo')
+            response.redirect('/produtos');
         });
 
         conexao.end();
