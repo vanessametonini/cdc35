@@ -1,0 +1,7 @@
+mysql -u root < estoque.sql
+
+curl -H "Accept:application/json" http://localhost:3001/estoque/itens
+
+curl -H "Accept:application/json" http://localhost:3001/estoque/itens/1
+
+curl -H "Content-type: application/json" -X PATCH -d '{"numero_itens": 4}' http://localhost:3001/estoque/itens/1
