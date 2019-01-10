@@ -6,11 +6,17 @@ module.exports = function(app) {
 
         produtoDao.listar(function(error, resultados){
             
-            if(error){
-                next(error);
-            } else {
-                response.render('produtos/lista', {resultados});
-            }
+            if(error) next(error);
+            
+            response.format({
+                html: function(){
+                    response.render('produtos/lista', {resultados})
+                }
+                ,
+                json: function(){
+                    response.json(resultados)
+                }
+            })
         }) 
 
         conexao.end();
@@ -26,7 +32,7 @@ module.exports = function(app) {
         const produtoDao = new app.infra.ProdutoDao(conexao);
         const livro = request.body;
 
-        produtoDao.cadastrar(livro, () =>{
+        produtoDao.cadastrar(livro, () => {
             response.redirect('/produtos');
         });
 
