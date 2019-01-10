@@ -1,0 +1,8 @@
+curl -H "Content-Type: application/json" -X POST -d '{"titulo":"novo livro","preco":"47","descricao":"livrão dahora"}' http://localhost:3000/produtos
+
+curl -H "Accept: application/json" http://localhost:3001/estoque/itens
+
+curl -H"Accept: application/json" http://localhost:3001/estoque/itens/1
+
+curl -H "Content-Type: application/json" -X PATCH -d '{"numero_itens": 4}' http://localhost:3001/estoque/itens/1
+
